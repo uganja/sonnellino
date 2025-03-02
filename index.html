@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonnellino Travel - Il Dolce Far Niente</title>
+    <style>
+        :root {
+            --primary: #d8a7b1; /* dusty pink */
+            --secondary: #e6dbd0; /* light sand */
+            --accent: #b76e79; /* darker pink */
+            --light: #f8f4f0; /* lightest sand */
+            --dark: #6d5f53; /* dark sand */
+            --text: #4a413a; /* dark brown text */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://github.com/uganja/sonnellino/blob/main/hammock.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+            position: relative;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+            font-size: 4rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: white;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+            font-weight: 300;
+        }
+        
+        .call-to-action {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 400;
+            transition: all 0.5s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+        }
+        
+        .call-to-action:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .destinations {
+            padding: 5rem 2rem;
+            text-align: center;
+            background-color: white;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .destination-card {
+            background-color: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .card-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .card-image::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2));
+        }
+        
+        .card-content {
+            padding: 2rem;
+        }
+        
+        .card-title {
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+        
+        .card-description {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .card-price {
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        .relaxation-quote {
+            background-color: var(--secondary);
+            padding: 5rem 2rem;
+            text-align: center;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .quote-text {
+            font-size: 2rem;
+            color: var(--accent);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        .quote-author {
+            margin-top: 1.5rem;
+            color: var(--dark);
+            font-size: 1.2rem;
+        }
+        
+        .about-us {
+            background-color: white;
+            color: var(--text);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .testimonials {
+            margin: 3rem 0;
+            padding: 2rem;
+            background-color: var(--light);
+            border-radius: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .testimonial-author {
+            font-weight: 400;
+            color: var(--dark);
+        }
+        
+        .dolce-section {
+            padding: 5rem 2rem;
+            background-color: var(--secondary);
+            text-align: center;
+        }
+        
+        .dolce-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .dolce-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .dolce-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .dolce-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+        
+        .dolce-description {
+            color: var(--text);
+            line-height: 1.7;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .contact-info {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .social-links {
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+            padding: 0.5rem;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-logo {
+            margin-top: 1.5rem;
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        
+        .uk-flag {
+            width: 24px;
+            height: 12px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 5px;
+            background: url('/api/placeholder/24/12') center/cover no-repeat;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .destination-grid, .dolce-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quote-text {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="logo">Sonnellino</h1>
+        <p class="tagline">Il Dolce Far Niente</p>
+        <a href="#" class="call-to-action">Discover Relaxation</a>
+    </header>
+    
+    <section class="relaxation-quote">
+        <p class="quote-text">"Time you enjoy wasting is not wasted time."</p>
+        <p class="quote-author">— Italian Proverb</p>
+    </section>
+    
+    <section class="destinations">
+        <h2>Relaxation Destinations</h2>
+        <div class="destination-grid">
+            <div class="destination-card">
+                <div class="card-image" style="background-image: url('https://github.com/uganja/sonnellino/blob/main/barbados.jpg')"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Escape to Tranquil Barbados</h3>
+                    <p class="card-description">Let the gentle Caribbean waves wash your stress away on Barbados' pristine beaches. This sun-soaked paradise offers the perfect setting for total relaxation, whether you're lounging under swaying palms, enjoying a beachfront massage, or sipping rum punch at sunset. With year-round warm weather and legendary Bajan hospitality, Barbados is your ideal destination for a peaceful tropical getaway.</p>
+                    <p class="card-price">From £1,199 per person for 7 nights</p>
+                </div>
+            </div>
+            
+            <div class="destination-card">
+                <div class="card-image" style="background-image: url('https://github.com/uganja/sonnellino/blob/main/montenegro.jpg')"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Discover Hidden Serenity in Montenegro</h3>
+                    <p class="card-description">Nestled along the Adriatic coast, Montenegro offers an unspoiled escape from the ordinary. Find your peace in medieval coastal towns, crystal-clear lakes, and pristine mountains where time seems to stand still. Whether you're unwinding at a luxury resort in Sveti Stefan, sailing the tranquil Bay of Kotor, or retreating to a mountain spa, Montenegro's natural beauty and unhurried pace provide the perfect sanctuary for those seeking genuine relaxation.</p>
+                    <p class="card-price">From £1,499 per person</p>
+                </div>
+            </div>
+            
+            <div class="destination-card">
+                <div class="card-image" style="background-image: url('https://github.com/uganja/sonnellino/blob/main/bali.jpg')"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Embrace Tranquility in Indonesia</h3>
+                    <p class="card-description">Discover ultimate serenity across Indonesia's paradise islands, where ancient traditions of wellness meet pristine natural beauty. From Bali's gentle spiritual energy and luxury spa retreats to secluded beaches in the Gili Islands, this tropical haven offers endless ways to reconnect and unwind. Let the sound of waves, fragrant frangipani flowers, and warm hospitality of the Indonesian people melt your stresses away in this corner of Eden.</p>
+                    <p class="card-price">From £1,299 per person</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="dolce-section">
+        <h2>The Art of Dolce Far Niente</h2>
+        <div class="dolce-grid">
+            <div class="dolce-card">
+                <div class="dolce-icon">✧</div>
+                <h3 class="dolce-title">Slow Living</h3>
+                <p class="dolce-description">Embrace the Italian art of slowing down. Our holidays are designed with generous free time, no rushed itineraries, and plenty of moments to simply be.</p>
+            </div>
+            
+            <div class="dolce-card">
+                <div class="dolce-icon">✧</div>
+                <h3 class="dolce-title">Mindful Moments</h3>
+                <p class="dolce-description">From sunrise yoga on a private terrace to sunset aperitivo by the sea, we curate experiences that invite you to be fully present in the moment.</p>
+            </div>
+            
+            <div class="dolce-card">
+                <div class="dolce-icon">✧</div>
+                <h3 class="dolce-title">Authentic Rest</h3>
+                <p class="dolce-description">Sleep in, take afternoon naps, and enjoy the pleasure of having nowhere to be. Our accommodations are selected for comfort and tranquility.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="about-us">
+        <h2>About Sonnellino</h2>
+        <div class="about-content">
+            <p>Sonnellino, meaning "little nap" in Italian, was founded in London by Italian-British cousins Marco and Emma. We believe in the restorative power of true relaxation – not as a luxury, but as an essential art of living that Italians have mastered for centuries.</p>
+            <p>Our carefully curated travel experiences honor the Italian philosophy of "Il Dolce Far Niente" – the sweetness of doing nothing. We invite you to disconnect from the demands of modern life and reconnect with the simple pleasures that make life sweet.</p>
+            
+            <div class="testimonials">
+                <p class="testimonial-text">"Our Sonnellino holiday was truly transformative. For the first time in years, we experienced what it means to completely unwind. No schedules, no pressure – just pure, blissful relaxation in the most beautiful settings."</p>
+                <p class="testimonial-author">— Catherine & William, Bath</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="contact-info">
+            <p>Sonnellino Travel Agency</p>
+            <p>42 Victoria Street, London, SW1E 6QP</p>
+            <p>Email: relax@sonnellino.co.uk | Phone: +44 20 7123 4567</p>
+        </div>
+        
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Pinterest</a>
+        </div>
+        
+        <div class="footer-logo">
+            Sonnellino <span class="uk-flag"></span>
+        </div>
+    </footer>
+</body>
+</html>
